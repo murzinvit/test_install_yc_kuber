@@ -10,6 +10,6 @@ variable "folder_id" {
   default = ""
 }
 
-variable "zone_1" {
+variable "zone" {
   default = "ru-central1-a"
 }
