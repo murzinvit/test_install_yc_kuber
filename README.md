@@ -1,1 +1,1 @@
-### Yandex Cloud kubernetis test
+### Yandex Cloud kubernetes test
