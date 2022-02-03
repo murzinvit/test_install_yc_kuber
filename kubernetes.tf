@@ -45,7 +45,7 @@ resource "yandex_kubernetes_cluster" "test-kuber" {
   }
 
   service_account_id      = yandex_iam_service_account.admin.id
-  node_service_account_id = yandex_iam_service_account.admin.id
+  node_service_account_id = yandex_iam_service_account.instances-editor.id
 
   labels = {
     my_key       = "my_labels"
