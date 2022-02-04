@@ -5,4 +5,4 @@ https://habr.com/ru/post/574514/
 https://github.com/sport24ru
 
 get yandex cloud image list: </br>
-  `yc compute image list --folder-id standard-images` </br>
+    `yc compute image list --folder-id standard-images` </br>
