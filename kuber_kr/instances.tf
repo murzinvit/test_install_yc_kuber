@@ -18,8 +18,8 @@ resource "yandex_compute_instance_group" "k8s-masters" {
 
     resources {
       cores  = 2
-      memory = 2
-      core_fraction = 20
+      memory = 4
+      core_fraction = 5
     }
 
     boot_disk {
@@ -50,7 +50,7 @@ resource "yandex_compute_instance_group" "k8s-masters" {
 
   scale_policy {
     fixed_scale {
-      size = 3
+      size = 1
     }
   }
 
@@ -90,8 +90,8 @@ resource "yandex_compute_instance_group" "k8s-workers" {
 
     resources {
       cores  = 2
-      memory = 2
-      core_fraction = 20
+      memory = 4
+      core_fraction = 5
     }
 
     boot_disk {
@@ -122,7 +122,7 @@ resource "yandex_compute_instance_group" "k8s-workers" {
 
   scale_policy {
     fixed_scale {
-      size = 2
+      size = 1
     }
   }
 
@@ -166,8 +166,8 @@ resource "yandex_compute_instance_group" "k8s-ingresses" {
 
     resources {
       cores  = 2
-      memory = 2
-      core_fraction = 20
+      memory = 4
+      core_fraction = 5
     }
 
     boot_disk {
@@ -198,7 +198,7 @@ resource "yandex_compute_instance_group" "k8s-ingresses" {
 
   scale_policy {
     fixed_scale {
-      size = 2
+      size = 1
     }
   }
 
