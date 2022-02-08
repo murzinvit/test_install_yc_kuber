@@ -61,6 +61,7 @@ resource "yandex_kubernetes_node_group" "my_node_group" {
   description = "description"
   version     = "1.21"
 
+
   labels = {
     "key" = "value"
   }
@@ -69,11 +70,12 @@ resource "yandex_kubernetes_node_group" "my_node_group" {
     platform_id = "standard-v2"
 
     network_interface {
-      nat                = true
-      subnet_ids         = [yandex_vpc_subnet.internal-a.id]
+      subnet_ids = [yandex_vpc_subnet.internal-a.id]
+      nat = true
     }
 
     resources {
+      core_fraction = 5
       memory = 2
       cores  = 2
     }
@@ -90,7 +92,7 @@ resource "yandex_kubernetes_node_group" "my_node_group" {
 
   scale_policy {
     fixed_scale {
-      size = 1
+      size = 3
     }
   }
 
