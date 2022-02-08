@@ -55,43 +55,65 @@ resource "yandex_kubernetes_cluster" "test-kuber" {
   release_channel = "STABLE"
 }
 
-    resource "yandex_kubernetes_node_group" "node-group-0" {
-      cluster_id = yandex_kubernetes_cluster.test-kuber.id
-      name       = "test-group-auto"
-      version    = "1.21"
+resource "yandex_kubernetes_node_group" "my_node_group" {
+  cluster_id  = yandex_kubernetes_cluster.test-kuber.id
+  name        = "name"
+  description = "description"
+  version     = "1.21"
 
+  labels = {
+    "key" = "value"
+  }
 
-      instance_template {
-        platform_id = "standard-v2"
-        nat         = true
+  instance_template {
+    platform_id = "standard-v2"
 
-        resources {
-          core_fraction = 20
-          memory        = 2
-          cores         = 2
-        }
-
-        boot_disk {
-          type = "network-hdd"
-          size = 64
-        }
-
-        scheduling_policy {
-          preemptible = false
-        }
-      }
-
-      scale_policy {
-        auto_scale {
-          min     = 2
-          max     = 3
-          initial = 2
-        }
-      }
-
-      allocation_policy {
-        location {
-          zone = "ru-central1-a"
-        }
-      }
+    network_interface {
+      nat                = true
+      subnet_ids         = [yandex_vpc_subnet.internal-a.id]
     }
+
+    resources {
+      memory = 2
+      cores  = 2
+    }
+
+    boot_disk {
+      type = "network-hdd"
+      size = 64
+    }
+
+    scheduling_policy {
+      preemptible = false
+    }
+  }
+
+  scale_policy {
+    fixed_scale {
+      size = 1
+    }
+  }
+
+  allocation_policy {
+    location {
+      zone = "ru-central1-a"
+    }
+  }
+
+  maintenance_policy {
+    auto_upgrade = true
+    auto_repair  = true
+
+    maintenance_window {
+      day        = "monday"
+      start_time = "15:00"
+      duration   = "3h"
+    }
+
+    maintenance_window {
+      day        = "friday"
+      start_time = "10:00"
+      duration   = "4h30m"
+    }
+  }
+}
