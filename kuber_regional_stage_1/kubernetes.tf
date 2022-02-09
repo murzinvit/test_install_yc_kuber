@@ -44,8 +44,8 @@ resource "yandex_kubernetes_cluster" "test-kuber" {
     }
   }
 
-  service_account_id      = yandex_iam_service_account.admin.id
-  node_service_account_id = yandex_iam_service_account.instances-editor.id
+  service_account_id      = yandex_iam_service_account.instances-editor.id
+  node_service_account_id = yandex_iam_service_account.docker-registry.id
 
   labels = {
     my_key       = "my_labels"
@@ -63,7 +63,7 @@ resource "yandex_kubernetes_node_group" "my_node_group" {
 
 
   labels = {
-    "key" = "value"
+    "group_name" = "name"
   }
 
   instance_template {
