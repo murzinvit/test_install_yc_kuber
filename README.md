@@ -6,6 +6,8 @@ https://github.com/sport24ru
 
 https://github.com/netology-code/devops-diplom-yandexcloud
 
+https://cloud.yandex.ru/docs/managed-kubernetes/solutions/ingress-cert-manager
+
 #### Get yandex cloud image list: </br>
 - `yc compute image list --folder-id standard-images` </br>
 
