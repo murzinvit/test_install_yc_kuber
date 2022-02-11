@@ -48,8 +48,8 @@ resource "yandex_kubernetes_cluster" "test-kuber" {
   node_service_account_id = yandex_iam_service_account.docker-registry.id
 
   labels = {
-    my_key       = "my_labels"
-    my_other_key = "my_key"
+    my_key       = "test_labels"
+    my_other_key = "test_key"
   }
 
   release_channel = "STABLE"
@@ -57,13 +57,13 @@ resource "yandex_kubernetes_cluster" "test-kuber" {
 
 resource "yandex_kubernetes_node_group" "my_node_group" {
   cluster_id  = yandex_kubernetes_cluster.test-kuber.id
-  name        = "name"
+  name        = "test-group"
   description = "description"
   version     = "1.21"
 
 
   labels = {
-    "group_name" = "name"
+    "group_name" = "test-name"
   }
 
   instance_template {
@@ -82,7 +82,7 @@ resource "yandex_kubernetes_node_group" "my_node_group" {
 
     boot_disk {
       type = "network-hdd"
-      size = 64
+      size = 34
     }
 
     scheduling_policy {
