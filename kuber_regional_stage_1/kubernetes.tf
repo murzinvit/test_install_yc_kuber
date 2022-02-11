@@ -2,25 +2,25 @@ resource "yandex_kubernetes_cluster" "test-kuber" {
   name        = "test-kuber"
   description = "description"
 
-  network_id = yandex_vpc_network.internal.id
+  network_id = yandex_vpc_network.network-1.id
 
   master {
     regional {
       region = "ru-central1"
 
       location {
-        zone      = yandex_vpc_subnet.internal-a.zone
-        subnet_id = yandex_vpc_subnet.internal-a.id
+        zone      = yandex_vpc_subnet.public-subnet-a.zone
+        subnet_id = yandex_vpc_subnet.public-subnet-a.id
       }
 
       location {
-        zone      = yandex_vpc_subnet.internal-b.zone
-        subnet_id = yandex_vpc_subnet.internal-b.id
+        zone      = yandex_vpc_subnet.public-subnet-b.zone
+        subnet_id = yandex_vpc_subnet.public-subnet-b.id
       }
 
       location {
-        zone      = yandex_vpc_subnet.internal-c.zone
-        subnet_id = yandex_vpc_subnet.internal-c.id
+        zone      = yandex_vpc_subnet.public-subnet-c.zone
+        subnet_id = yandex_vpc_subnet.public-subnet-c.id
       }
     }
 
@@ -70,7 +70,7 @@ resource "yandex_kubernetes_node_group" "my_node_group" {
     platform_id = "standard-v2"
 
     network_interface {
-      subnet_ids = [yandex_vpc_subnet.internal-a.id]
+      subnet_ids = [yandex_vpc_subnet.public-subnet-a.id]
       nat = true
     }
 
