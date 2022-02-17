@@ -14,4 +14,4 @@ https://cloud.yandex.ru/docs/managed-kubernetes/solutions/ingress-cert-manager
 #### Connect kubernetes: </br>
 - `yc managed-kubernetes cluster get-credentials --id cathrdhj5qe2pnvo1742 --external` </br>
 - `kubectl get pods` </br>
-
+- `kubectl exec deploy/db -it -- bash` </br>
